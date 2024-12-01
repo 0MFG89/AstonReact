@@ -1,0 +1,34 @@
+.form {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+}
+
+.form__container {
+   display: flex;
+   flex-direction: column;
+   font-size: 15px;
+   gap: 10px;
+   width: 400px;
+}
+
+.form__container>input {
+   outline: none;
+   border: 2px solid black;
+   border-radius: 5px;
+   padding: 5px;
+}
+
+.form__container>input:focus {
+   border-color: green;
+}
+
+.form__container>button {
+   outline: none;
+   border: 2px solid black;
+   border-radius: 5px;
+   padding: 5px;
+   font-weight: bold;
+}
