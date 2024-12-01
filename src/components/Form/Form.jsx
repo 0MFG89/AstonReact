@@ -7,7 +7,11 @@ class Form extends React.Component {
       this.state = {
          input: this.props.startValue
       };
+      this.input = React.createRef();
+      this.sendButton = React.createRef();
       this.inputHandler = this.inputHandler.bind(this);
+      this.sendButtonHandler = this.sendButtonHandler.bind(this);
+      this.focusButtonHandler = this.focusButtonHandler.bind(this);
    }
 
    componentDidMount() {
@@ -24,7 +28,20 @@ class Form extends React.Component {
    }
 
    inputHandler(e) {
-      this.setState({input: e.target.value});
+      const inputValue = e.target.value;
+      if (inputValue.includes('реакт')) this.sendButton.current.disabled = true;
+      else this.sendButton.current.disabled = false;
+      this.setState({input: inputValue});
+   }
+
+   sendButtonHandler(e) {
+      e.preventDefault();
+      console.log('Отправка формы');
+   }
+
+   focusButtonHandler(e) {
+      e.preventDefault();
+      this.input.current.focus();
    }
 
    render() {
@@ -33,10 +50,22 @@ class Form extends React.Component {
             <div className="form__container">
                <input 
                   type="text" 
-                  value={this.state.input} 
+                  value={this.state.input}
+                  ref={this.input}
                   onChange={this.inputHandler} 
                />
-               <button>OK</button>
+               <button 
+                  type="submit"
+                  ref={this.sendButton}
+                  onClick={this.sendButtonHandler}
+               >
+                  SEND
+               </button>
+               <button
+                  onClick={this.focusButtonHandler}
+               >
+                  Focus
+               </button>
             </div>
          </form>
       </div>
